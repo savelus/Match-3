@@ -21,9 +21,10 @@ public class Gem : MonoBehaviour
 
     
     private Vector2Int previousPosition;
-    public enum GemType { blue, green, red, yellow, purple}
+    public enum GemType { blue, green, red, yellow, purple, bomb}
     public GemType type;
-    
+
+    public GameObject destroyEffect;
     // Start is called before the first frame update
     void Start()
     {

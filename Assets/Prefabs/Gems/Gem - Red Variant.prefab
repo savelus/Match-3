@@ -71,5 +71,9 @@ PrefabInstance:
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7793161621020692607, guid: 443a4b4c88d111241bdb48da8b95ecfb, type: 3}
+      propertyPath: destroyEffect
+      value: 
+      objectReference: {fileID: 9100562867313729239, guid: 9dbe4490dc48f2d45ac50ec49ac83378, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 443a4b4c88d111241bdb48da8b95ecfb, type: 3}
