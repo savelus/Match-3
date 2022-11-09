@@ -25,6 +25,8 @@ public class Gem : MonoBehaviour
     public GemType type;
 
     public GameObject destroyEffect;
+
+    public int blastSize = 2;
     // Start is called before the first frame update
     void Start()
     {
