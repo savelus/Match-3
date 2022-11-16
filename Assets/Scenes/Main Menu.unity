@@ -19728,7 +19728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf68d7ddcc0498f4c956cecc796987cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Test Level
+  levelToLoad: LevelSelect
 --- !u!1001 &1383311696
 PrefabInstance:
   m_ObjectHideFlags: 0
