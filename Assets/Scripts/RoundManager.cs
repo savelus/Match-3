@@ -84,5 +84,7 @@ public class RoundManager : MonoBehaviour
         {
             uiMan.winText.text = "Oh no! No stars to you! Try Again?";
         }
+
+        SFXManager.instance.PlayRoundOver();
     }
 }

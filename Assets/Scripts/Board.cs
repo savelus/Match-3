@@ -26,18 +26,23 @@ public class Board : MonoBehaviour
 
     [HideInInspector]
     public RoundManager roundManager;
-
+    private BoardLayout boardLayout;
+    private Gem[,] layoutStore;
     private float bonusMulti;
     public float bonusAmount = .5f;
     private void Awake()
     {
         matchFinder = FindObjectOfType<MatchFinder>();
         roundManager = FindObjectOfType<RoundManager>();
+        boardLayout = GetComponent<BoardLayout>();
     }
     // Start is called before the first frame update
     void Start()
     {
         allGems = new Gem[width,height];
+
+        layoutStore = new Gem[width, height];
+
         Setup();
 
         
@@ -55,6 +60,11 @@ public class Board : MonoBehaviour
     // Update is called once per frame
     private void Setup()
     {
+
+        if(boardLayout != null)
+        {
+            layoutStore = boardLayout.GetLayout();
+        }
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -64,13 +74,20 @@ public class Board : MonoBehaviour
                 bgTile.transform.parent = transform;
                 bgTile.name = $"BG Tile - {x} , {y}";
 
-                int gemToUse = Random.Range(0, gems.Length);
-
-                while(MatchesAt(new Vector2Int(x, y), gems[gemToUse]))
+                if (layoutStore[x, y] != null)
                 {
-                    gemToUse = Random.Range(0, gems.Length);
+                    SpawnGem(new Vector2Int(x, y), layoutStore[x, y]);
                 }
-                SpawnGem(new Vector2Int(x, y), gems[gemToUse]);
+                else
+                {
+                    int gemToUse = Random.Range(0, gems.Length);
+
+                    while (MatchesAt(new Vector2Int(x, y), gems[gemToUse]))
+                    {
+                        gemToUse = Random.Range(0, gems.Length);
+                    }
+                    SpawnGem(new Vector2Int(x, y), gems[gemToUse]);
+                }
             }
         }
     }
@@ -116,6 +133,19 @@ public class Board : MonoBehaviour
         {
             if (allGems[position.x, position.y].isMatched)
             {
+
+                if (allGems[position.x, position.y].type  == Gem.GemType.bomb)
+                {
+                    SFXManager.instance.PlayExplode();
+                }
+                else if (allGems[position.x, position.y].type == Gem.GemType.stone)
+                {
+                    SFXManager.instance.PlayStoneBreak();
+                }
+                else
+                {
+                    SFXManager.instance.PlayGemBreak();
+                }
                 Instantiate(allGems[position.x, position.y].destroyEffect, 
                     new Vector2(position.x, position.y), Quaternion.identity);
 

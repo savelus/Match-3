@@ -20,7 +20,7 @@ public class Gem : MonoBehaviour
     public bool isMatched;
 
     private Vector2Int previousPosition;
-    public enum GemType { blue, green, red, yellow, purple, bomb}
+    public enum GemType { blue, green, red, yellow, purple, bomb, stone}
     public GemType type;
 
     public GameObject destroyEffect;
