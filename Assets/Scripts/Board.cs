@@ -10,6 +10,7 @@ public class Board : MonoBehaviour
     public GameObject bgTilePrefab;
 
     public Gem[] gems;
+    public SuperGem[] superGems;
 
     public Gem[,] allGems;
 
