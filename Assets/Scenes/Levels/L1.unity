@@ -583,6 +583,17 @@ MonoBehaviour:
   - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
   - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
   - {fileID: 7702175639498604200, guid: 1c81d0f2d92cff14a9b6e692368f9fb5, type: 3}
+  superGems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   gemSpeed: 7
   matchFinder: {fileID: 0}
   currentState: 1
