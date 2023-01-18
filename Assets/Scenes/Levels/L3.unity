@@ -304,7 +304,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.0514278
+  orthographic size: 5.3036804
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 2.02, z: -10}
+  m_LocalPosition: {x: 0.5, y: 4.49, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -428,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665557215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -481,7 +481,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 5.2, y: 5.2}
+  m_Size: {x: 10.2, y: 10.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -512,7 +512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967662717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -565,7 +565,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 5.4, y: 5.4}
+  m_Size: {x: 10.4, y: 10.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -646,8 +646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b09074d4c9fe048ac1dc74f30826f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
+  width: 10
+  height: 10
   bgTilePrefab: {fileID: 46472074127340536, guid: 787916f8d75ea664399fb92544048860, type: 3}
   gems:
   - {fileID: 7793161621020692607, guid: 443a4b4c88d111241bdb48da8b95ecfb, type: 3}
@@ -655,6 +655,7 @@ MonoBehaviour:
   - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
   - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
   - {fileID: 7702175639498604200, guid: 1c81d0f2d92cff14a9b6e692368f9fb5, type: 3}
+  superGems: []
   gemSpeed: 7
   matchFinder: {fileID: 0}
   currentState: 1
@@ -670,7 +671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223821722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0361857, y: 0.5153172, z: 0}
+  m_LocalPosition: {x: 4.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -694,18 +695,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allRows:
   - gemsInRow:
-    - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
-    - {fileID: 7793161621020692607, guid: 443a4b4c88d111241bdb48da8b95ecfb, type: 3}
-    - {fileID: 8492010264804266545, guid: c218e0b91d0410943b4068c1fbf1d522, type: 3}
-    - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
-    - {fileID: 7702175639498604200, guid: 1c81d0f2d92cff14a9b6e692368f9fb5, type: 3}
-  - gemsInRow:
-    - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
-    - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -717,7 +711,94 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -809,13 +890,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb3331d5f71b194db91421b2c263b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 30
+  roundTime: 60
   currentScore: 0
   scoreSpeed: 5
   displyScore: 0
-  scoreTarget1: 100
-  scoreTarget2: 200
-  scoreTarget3: 1000
+  scoreTarget1: 500
+  scoreTarget2: 1000
+  scoreTarget3: 3000
 --- !u!4 &1841850709
 Transform:
   m_ObjectHideFlags: 0
@@ -856,7 +937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932770096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -909,7 +990,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
