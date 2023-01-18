@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7793161621020692607, guid: 443a4b4c88d111241bdb48da8b95ecfb, type: 3}
       propertyPath: blastSize
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7793161621020692607, guid: 443a4b4c88d111241bdb48da8b95ecfb, type: 3}
       propertyPath: scoreValue
