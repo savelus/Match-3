@@ -655,6 +655,17 @@ MonoBehaviour:
   - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
   - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
   - {fileID: 7702175639498604200, guid: 1c81d0f2d92cff14a9b6e692368f9fb5, type: 3}
+  superGems:
+  - {fileID: 7149913742289536756, guid: 48e22ae3d8177424c9fdac3a3b535fd3, type: 3}
+  - {fileID: 8182682740598443003, guid: b0813ffdc47f55247b9a0753adc208c7, type: 3}
+  - {fileID: 61940442005648861, guid: e6dd51281f0d4cc40ae2825adce6f71b, type: 3}
+  - {fileID: 6142774733916127266, guid: 0dc9528fac0e99b44994b0d9fd632265, type: 3}
+  - {fileID: 4071668371125577410, guid: 948651d71b0ab5f45ab22106d06df76c, type: 3}
+  - {fileID: 7373376465287375854, guid: cbcbdd52736071e44ad3d4add28e8bb0, type: 3}
+  - {fileID: 3184589867114160591, guid: e9ddbac28ec853e45bda2229d66dbb55, type: 3}
+  - {fileID: 4779460749599613156, guid: a25c59b7130c1b64f80f40a0b4ab8f06, type: 3}
+  - {fileID: 4481444388939265054, guid: 927010796e666fc418cfaadc6c1d962c, type: 3}
+  - {fileID: 7714041084530742391, guid: 11c1e14e679a3424092e3883aa370d7b, type: 3}
   gemSpeed: 7
   matchFinder: {fileID: 0}
   currentState: 1

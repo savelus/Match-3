@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 
 public class Board : MonoBehaviour
 {
@@ -11,7 +13,6 @@ public class Board : MonoBehaviour
 
     public Gem[] gems;
     public SuperGem[] superGems;
-
     public Gem[,] allGems;
 
     public float gemSpeed;
@@ -37,7 +38,7 @@ public class Board : MonoBehaviour
         roundManager = FindObjectOfType<RoundManager>();
         boardLayout = GetComponent<BoardLayout>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         allGems = new Gem[width,height];
@@ -51,14 +52,12 @@ public class Board : MonoBehaviour
 
     public void Update()
     {
-        // matchFinder.FindAllMatches();
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             ShuffleBoard();
         }
     }
-    // Update is called once per frame
     private void Setup()
     {
 
@@ -106,6 +105,37 @@ public class Board : MonoBehaviour
         gem.SetupGem(pos, this);
     }
 
+    public void SetupSuperGems()
+    {
+        foreach (var superGem in matchFinder.superGemOnBoard)
+        {
+            SuperGem superGemToSpawn = FindSuperGemToSpawn(superGem);
+            if (superGemToSpawn != null) 
+            { 
+                SuperGem sgem = Instantiate(superGemToSpawn,
+                    new Vector3(superGem.posIndex.x, superGem.posIndex.y + height, 0f),
+                    Quaternion.identity);
+                sgem.transform.parent = transform;
+                sgem.name = $"SGem - {superGem.posIndex.x} , {superGem.posIndex.y}";
+                Destroy(allGems[superGem.posIndex.x, superGem.posIndex.y].gameObject);
+                allGems[superGem.posIndex.x, superGem.posIndex.y] = sgem;
+                sgem.SetupGem(superGem.posIndex, this);
+            }
+        }
+        matchFinder.superGemOnBoard.Clear();
+    }
+
+    private SuperGem FindSuperGemToSpawn(SuperGem superGem)
+    {
+        foreach (var superGemToSpawn in superGems)
+        {
+            if(superGemToSpawn.type == superGem.type && superGemToSpawn.Boost == superGem.Boost)
+            {
+                return superGemToSpawn;
+            }
+        }
+        return null;
+    }
     bool MatchesAt(Vector2Int positionToCheck, Gem gemToCheck)
     {
         if (positionToCheck.x > 1)
@@ -166,7 +196,7 @@ public class Board : MonoBehaviour
                 DestroyMatchedGemAt(matchFinder.currentMatches[i].posIndex);
             }
         }
-
+        SetupSuperGems();
         StartCoroutine(DecreaseRowCo());
     }
 
