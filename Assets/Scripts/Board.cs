@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
+using Random = UnityEngine.Random;
 
 public class Board : MonoBehaviour
 {
@@ -32,11 +34,14 @@ public class Board : MonoBehaviour
     private Gem[,] layoutStore;
     private float bonusMulti;
     public float bonusAmount = .5f;
+
+    private StateSaver stateSaver;
     private void Awake()
     {
         matchFinder = FindObjectOfType<MatchFinder>();
         roundManager = FindObjectOfType<RoundManager>();
         boardLayout = GetComponent<BoardLayout>();
+        stateSaver = GetComponent<StateSaver>();
     }
 
     void Start()
@@ -346,6 +351,13 @@ public class Board : MonoBehaviour
             float bonusToAdd = gemToCheck.scoreValue * bonusMulti * bonusAmount;
             roundManager.currentScore += Mathf.RoundToInt(bonusToAdd);
         }
+    }
+
+    public void SaveBoard()
+    {
+        var time = roundManager.roundTime;
+        var score = roundManager.currentScore;
+        
     }
 }
 

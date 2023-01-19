@@ -17,13 +17,14 @@ public class UIManager : MonoBehaviour
     public GameObject winStars1, winStars2, winStars3;
     public GameObject roundOverScreen;
 
-    private Board theBoard;
-
+    private Board board;
+    private RoundManager roundManager;
     public string levelSelect;
     public GameObject pauseScreen;
     private void Awake()
     {
-        theBoard = FindObjectOfType<Board>();
+        board = FindObjectOfType<Board>();
+        roundManager = FindObjectOfType<RoundManager>();
     }
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,7 @@ public class UIManager : MonoBehaviour
 
     public void ShuffleBoard()
     {
-        theBoard.ShuffleBoard();
+        board.ShuffleBoard();
     }
 
     public void QuitGame()
@@ -76,5 +77,11 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SaveState()
+    {
+        StateSaver stateSaver = new();
+        stateSaver.SaveState(board, roundManager);
     }
 }
