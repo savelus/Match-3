@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMatches: []
+  superGemOnBoard: []
 --- !u!4 &1182533307
 Transform:
   m_ObjectHideFlags: 0
@@ -626,6 +627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1223821724}
   - component: {fileID: 1223821723}
+  - component: {fileID: 1223821725}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -654,6 +656,7 @@ MonoBehaviour:
   - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
   - {fileID: 1786478520629024271, guid: ffb9f0d61d09ad245838a998f705856b, type: 3}
   - {fileID: 7702175639498604200, guid: 1c81d0f2d92cff14a9b6e692368f9fb5, type: 3}
+  superGems: []
   gemSpeed: 7
   matchFinder: {fileID: 0}
   currentState: 1
@@ -679,6 +682,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223821725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223821722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3731fa721eb525a428c66c1ee76f95af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allRows:
+  - gemsInRow:
+    - {fileID: 811065379574798904, guid: b505adb74f4607f4683fb4cd540e6ad1, type: 3}
+    - {fileID: 811065379574798904, guid: b505adb74f4607f4683fb4cd540e6ad1, type: 3}
+    - {fileID: 811065379574798904, guid: b505adb74f4607f4683fb4cd540e6ad1, type: 3}
+    - {fileID: 811065379574798904, guid: b505adb74f4607f4683fb4cd540e6ad1, type: 3}
+    - {fileID: 811065379574798904, guid: b505adb74f4607f4683fb4cd540e6ad1, type: 3}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 4241373484817656678, guid: 5b8694c91349e1f4c84a24ea62293ae0, type: 3}
+    - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
+    - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 2828195669289896961, guid: 7ee0a854086dba94cb111b356fe01fe5, type: 3}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - gemsInRow:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
 --- !u!1001 &1673559021
 PrefabInstance:
   m_ObjectHideFlags: 0
