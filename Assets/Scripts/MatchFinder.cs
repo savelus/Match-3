@@ -42,24 +42,6 @@ public class MatchFinder : MonoBehaviour
                             farGems.Add(board.allGems[x + 3, y]);
                         }
                         WorkWithLine(leftGem, currentGem, rightGem, farGems, SuperGem.BoostType.horizontal);
-                        //if (IsAvailableForChecking(leftGem, rightGem))
-                        //{
-                        //    if (leftGem.type == currentGem.type && rightGem.type == currentGem.type)
-                        //    {
-                        //        MarkGemsinLine(new Gem[] { leftGem, currentGem, rightGem });
-                        //        if(x < board.width - 2 && currentGem.type == board.allGems[x + 2, y].type)
-                        //        {
-                        //            if (x + 3 < board.width && currentGem.type != board.allGems[x+3, y].type || x + 3 >= board.width)
-                        //            {
-                                        
-                        //                SuperGem superGem = new(currentGem, SuperGem.BoostType.horizontal);
-                        //                superGemOnBoard.Add(superGem);
-                        //            }
-                        //        }
-                        //    }
-                        //}
-
-                        
                     }
 
                     if (y > 0 && y < board.height - 1)
@@ -69,7 +51,7 @@ public class MatchFinder : MonoBehaviour
 
                         List<Gem> farGems = new();
 
-                        if (y < board.height - 2)
+                        if (y < board.height - 2) //смущает такая конструкция, может есть какой-то другой вариант
                         {
                             farGems.Add(board.allGems[x, y + 2]);
                         }
@@ -78,35 +60,16 @@ public class MatchFinder : MonoBehaviour
                             farGems.Add(board.allGems[x, y + 3]);
                         }
                         WorkWithLine(belowGem, currentGem, aboveGem, farGems, SuperGem.BoostType.vertical);
-                        //if (IsAvailableForChecking(aboveGem, belowGem))
-                        //{
-                        //    if (aboveGem.type == currentGem.type && belowGem.type == currentGem.type)
-                        //    {
-                        //        MarkGemsinLine(new Gem[] { aboveGem, currentGem, belowGem });
-                        //        if (y < board.height - 2 && currentGem.type == board.allGems[x, y + 2].type)
-                        //        {
-                        //            if (y + 3 < board.width && currentGem.type != board.allGems[x, y + 3].type || y + 3 >= board.height)
-                        //            {
-                        //                SuperGem superGem = new(currentGem, SuperGem.BoostType.vertical);
-                        //                superGemOnBoard.Add(superGem);
-                        //            }
-
-                        //        }
-                        //    }
-                        //}
                     }
                 }
             }
         }
-
-        
 
         if(currentMatches.Count > 0)
         {
             currentMatches = currentMatches.Distinct().ToList();
         }
 
-        
         CheckForBombs();
         CheckForSuperGem();
         board.SetupSuperGems();
@@ -118,7 +81,8 @@ public class MatchFinder : MonoBehaviour
             && secondNeighbour != null && secondNeighbour.type != Gem.GemType.stone;
     }
 
-    private void WorkWithLine(Gem previousGem, Gem currentGem, Gem nextGem, List<Gem>farGems, SuperGem.BoostType boostType)
+    private void WorkWithLine(Gem previousGem, Gem currentGem, Gem nextGem, List<Gem>farGems, SuperGem.BoostType boostType) 
+        //можно было бы собрать одним списком, но тогда будет не понятно отличие и расположение кристаллов
     {
         if(IsAvailableForChecking(previousGem, nextGem)) 
         {
@@ -133,8 +97,8 @@ public class MatchFinder : MonoBehaviour
                 }
             }
         }
-
     }
+
     public void CheckForSuperGem()
     {
         List<Gem> gemsToMark = new List<Gem>();
@@ -142,30 +106,24 @@ public class MatchFinder : MonoBehaviour
         {
             if(gem is SuperGem superGem)
             {
-                
                 if (superGem.Boost == SuperGem.BoostType.horizontal)
                 {
-                    
                     for (int i = 0; i < board.width; i++)
                     {
                         gemsToMark.Add(board.allGems[i, superGem.posIndex.y]);
                     }
-
                 }
                 else if (superGem.Boost == SuperGem.BoostType.vertical)
                 {
-
                     for (int i = 0; i < board.height; i++)
                     {
                         gemsToMark.Add(board.allGems[superGem.posIndex.x, i]);
                     }
-
                 }
                 else
                 {
                     throw new Exception("Не опознанный буст");
                 }
-                
             }
         }
         MarkGemsinLine(gemsToMark.ToArray());
@@ -181,47 +139,59 @@ public class MatchFinder : MonoBehaviour
 
             if(gem.posIndex.x > 0)
             {
-                if (board.allGems[x - 1, y] != null)
-                {
-                    if(board.allGems[x - 1, y].type == Gem.GemType.bomb)
-                    {
-                        MarkBombArea(new Vector2Int(x-1, y), board.allGems[x - 1, y]);
-                    }
-                }
+                CheckForBombOnCoord(x - 1, y);
+                //if (board.allGems[x - 1, y] != null)
+                //{
+                //    if(board.allGems[x - 1, y].type == Gem.GemType.bomb)
+                //    {
+                //        MarkBombArea(new Vector2Int(x-1, y), board.allGems[x - 1, y]);
+                //    }
+                //}
             }
 
             if (gem.posIndex.x < board.width - 1)
             {
-                if (board.allGems[x + 1, y] != null)
-                {
-                    if (board.allGems[x + 1, y].type == Gem.GemType.bomb)
-                    {
-                        MarkBombArea(new Vector2Int(x + 1, y), board.allGems[x + 1, y]);
-                    }
-                }
+                CheckForBombOnCoord(x + 1, y);
+                //if (board.allGems[x + 1, y] != null)
+                //{
+                //    if (board.allGems[x + 1, y].type == Gem.GemType.bomb)
+                //    {
+                //        MarkBombArea(new Vector2Int(x + 1, y), board.allGems[x + 1, y]);
+                //    }
+                //}
             }
 
             if (gem.posIndex.y > 0)
             {
-                if (board.allGems[x, y - 1] != null)
-                {
-                    if (board.allGems[x, y - 1].type == Gem.GemType.bomb)
-                    {
-                        MarkBombArea(new Vector2Int(x, y - 1), board.allGems[x, y - 1]);
-                    }
-                }
+                CheckForBombOnCoord(x, y - 1);
+                //if (board.allGems[x, y - 1] != null)
+                //{
+                //    if (board.allGems[x, y - 1].type == Gem.GemType.bomb)
+                //    {
+                //        MarkBombArea(new Vector2Int(x, y - 1), board.allGems[x, y - 1]);
+                //    }
+                //}
             }
 
             if (gem.posIndex.y < board.height - 1)
             {
-                if (board.allGems[x, y + 1] != null)
-                {
-                    if (board.allGems[x, y + 1].type == Gem.GemType.bomb)
-                    {
-                        MarkBombArea(new Vector2Int(x, y + 1), board.allGems[x, y + 1]);
-                    }
-                }
+                CheckForBombOnCoord(x, y + 1);
+                //if (board.allGems[x, y + 1] != null)
+                //{
+                //    if (board.allGems[x, y + 1].type == Gem.GemType.bomb)
+                //    {
+                //        MarkBombArea(new Vector2Int(x, y + 1), board.allGems[x, y + 1]);
+                //    }
+                //}
             }
+        }
+    }
+
+    private void CheckForBombOnCoord(int bombX, int bombY)
+    {
+        if (board.allGems[bombX, bombY] != null && board.allGems[bombX, bombY].type == Gem.GemType.bomb)
+        {
+            MarkBombArea(new Vector2Int(bombX, bombY), board.allGems[bombX, bombY]);
         }
     }
     public void MarkGemsinLine(Gem[] gems)
@@ -232,7 +202,6 @@ public class MatchFinder : MonoBehaviour
             currentMatches.Add(gem);
         }
         currentMatches = currentMatches.Distinct().ToList();
-
     }
 
     public void MarkBombArea(Vector2Int bombPosition, Gem theBomb)
