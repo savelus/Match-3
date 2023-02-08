@@ -556,6 +556,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1223821724}
   - component: {fileID: 1223821723}
+  - component: {fileID: 1223821725}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -587,9 +588,10 @@ MonoBehaviour:
   superGems: []
   gemSpeed: 7
   matchFinder: {fileID: 0}
+  fallManager: {fileID: 1223821725}
   currentState: 1
   bomb: {fileID: 4241373484817656678, guid: 5b8694c91349e1f4c84a24ea62293ae0, type: 3}
-  bombChance: 0
+  bombChance: 15
   roundManager: {fileID: 0}
   bonusAmount: 0.5
 --- !u!4 &1223821724
@@ -610,6 +612,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223821725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223821722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f48d49accaeda44a98124496630ab5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1589817787
 GameObject:
   m_ObjectHideFlags: 0
