@@ -29,7 +29,7 @@ public class MatchFinder : MonoBehaviour
                 {
                     if (x > 0 && x < board.width - 1)
                     {
-                        Gem leftGem = board.allGems[x - 1, y];
+                        Gem leftGem = board.allGems[x - 1, y]; //есть повторяющиеся участки кода, но отличается работа с x и y. Можно ли с этим что то сделать?
                         Gem rightGem = board.allGems[x + 1, y];
 
                         List<Gem> farGems = new();
@@ -170,8 +170,7 @@ public class MatchFinder : MonoBehaviour
     {
         foreach (var gem in gems)
         {
-            gem.isMatched = true;
-            currentMatches.Add(gem);
+            MatchGem(gem);
         }
         currentMatches = currentMatches.Distinct().ToList();
     }
@@ -182,16 +181,23 @@ public class MatchFinder : MonoBehaviour
         {
             for (int y = bombPosition.y - theBomb.blastSize; y <= bombPosition.y + theBomb.blastSize; y++)
             {
-                if(x >= 0 && x < board.width && y >= 0 && y < board.height)
+                if (CheckForPresenceGem(x, y))
                 {
-                    if (board.allGems[x,y] != null)
-                    {
-                        board.allGems[x, y].isMatched = true;
-                        currentMatches.Add(board.allGems[x, y]);
-                    }
+                    MatchGem(board.allGems[x, y]);
                 }
             }
         }
         currentMatches = currentMatches.Distinct().ToList();
+    }
+
+    private bool CheckForPresenceGem(int x, int y)
+    {
+        return x >= 0 && x < board.width && y >= 0 && y < board.height && board.allGems[x, y] != null;
+    }
+
+    private void MatchGem(Gem gem)
+    {
+        gem.isMatched = true;
+        currentMatches.Add(gem);
     }
 }
