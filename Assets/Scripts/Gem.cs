@@ -39,15 +39,7 @@ public class Gem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, posIndex) > .01f)
-        {
-            transform.position = Vector2.Lerp(transform.position, posIndex, board.gemSpeed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = new Vector3(posIndex.x, posIndex.y, 0f);
-            board.allGems[posIndex.x, posIndex.y] = this;
-        }
+        
         if (isMousePressed && Input.GetMouseButtonUp(0))
         {
             isMousePressed = false;
