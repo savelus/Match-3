@@ -29,7 +29,7 @@ public class FallManager : MonoBehaviour
         {
             foreach (var gem in board.allGems)
             {
-                if (gem == null) continue;
+                if (gem == null) continue;  
                 if (Vector2.Distance(gem.transform.position, gem.posIndex) > .01f)
                 {
                     gem.transform.position = Vector2.Lerp(gem.transform.position, gem.posIndex, board.gemSpeed * Time.deltaTime);
