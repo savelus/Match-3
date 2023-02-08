@@ -25,29 +25,39 @@ public class MatchFinder : MonoBehaviour
             for (int y = 0; y < board.height; y++)
             {
                 Gem currentGem = board.allGems[x, y];
-                if(currentGem != null)
+                if(currentGem != null && currentGem.type != Gem.GemType.stone)
                 {
-                    if( x > 0 && x < board.width - 1)
+                    if (x > 0 && x < board.width - 1)
                     {
                         Gem leftGem = board.allGems[x - 1, y];
                         Gem rightGem = board.allGems[x + 1, y];
-                        if (leftGem != null && rightGem != null)
-                        {
-                            if (leftGem.type == currentGem.type && rightGem.type == currentGem.type && currentGem.type != Gem.GemType.stone)
-                            {
-                                MarkGemsinLine(new Gem[] { leftGem, currentGem, rightGem });
-                                if(x < board.width - 2 && currentGem.type == board.allGems[x + 2, y].type)
-                                {
-                                    if (x + 3 < board.width && currentGem.type != board.allGems[x+3, y].type || x + 3 >= board.width)
-                                    {
-                                        
-                                        SuperGem superGem = new(currentGem, SuperGem.BoostType.horizontal);
-                                        superGemOnBoard.Add(superGem);
-                                    }
 
-                                }
-                            }
+                        List<Gem> farGems = new();
+                        if (x < board.width - 2)
+                        {
+                            farGems.Add(board.allGems[x + 2, y]);
                         }
+                        if (x < board.width - 3)
+                        {
+                            farGems.Add(board.allGems[x + 3, y]);
+                        }
+                        WorkWithLine(leftGem, currentGem, rightGem, farGems, SuperGem.BoostType.horizontal);
+                        //if (IsAvailableForChecking(leftGem, rightGem))
+                        //{
+                        //    if (leftGem.type == currentGem.type && rightGem.type == currentGem.type)
+                        //    {
+                        //        MarkGemsinLine(new Gem[] { leftGem, currentGem, rightGem });
+                        //        if(x < board.width - 2 && currentGem.type == board.allGems[x + 2, y].type)
+                        //        {
+                        //            if (x + 3 < board.width && currentGem.type != board.allGems[x+3, y].type || x + 3 >= board.width)
+                        //            {
+                                        
+                        //                SuperGem superGem = new(currentGem, SuperGem.BoostType.horizontal);
+                        //                superGemOnBoard.Add(superGem);
+                        //            }
+                        //        }
+                        //    }
+                        //}
 
                         
                     }
@@ -56,22 +66,34 @@ public class MatchFinder : MonoBehaviour
                     {
                         Gem aboveGem = board.allGems[x, y + 1];
                         Gem belowGem = board.allGems[x, y - 1];
-                        if (aboveGem != null && belowGem != null)
-                        {
-                            if (aboveGem.type == currentGem.type && belowGem.type == currentGem.type && currentGem.type != Gem.GemType.stone)
-                            {
-                                MarkGemsinLine(new Gem[] { aboveGem, currentGem, belowGem });
-                                if (y < board.height - 2 && currentGem.type == board.allGems[x, y + 2].type)
-                                {
-                                    if (y + 3 < board.width && currentGem.type != board.allGems[x, y + 3].type || y + 3 >= board.height)
-                                    {
-                                        SuperGem superGem = new(currentGem, SuperGem.BoostType.vertical);
-                                        superGemOnBoard.Add(superGem);
-                                    }
 
-                                }
-                            }
+                        List<Gem> farGems = new();
+
+                        if (y < board.height - 2)
+                        {
+                            farGems.Add(board.allGems[x, y + 2]);
                         }
+                        if (y < board.height - 3)
+                        {
+                            farGems.Add(board.allGems[x, y + 3]);
+                        }
+                        WorkWithLine(belowGem, currentGem, aboveGem, farGems, SuperGem.BoostType.vertical);
+                        //if (IsAvailableForChecking(aboveGem, belowGem))
+                        //{
+                        //    if (aboveGem.type == currentGem.type && belowGem.type == currentGem.type)
+                        //    {
+                        //        MarkGemsinLine(new Gem[] { aboveGem, currentGem, belowGem });
+                        //        if (y < board.height - 2 && currentGem.type == board.allGems[x, y + 2].type)
+                        //        {
+                        //            if (y + 3 < board.width && currentGem.type != board.allGems[x, y + 3].type || y + 3 >= board.height)
+                        //            {
+                        //                SuperGem superGem = new(currentGem, SuperGem.BoostType.vertical);
+                        //                superGemOnBoard.Add(superGem);
+                        //            }
+
+                        //        }
+                        //    }
+                        //}
                     }
                 }
             }
@@ -90,8 +112,29 @@ public class MatchFinder : MonoBehaviour
         board.SetupSuperGems();
     }
 
-    
+    private bool IsAvailableForChecking(Gem firstNeighbour, Gem secondNeighbour)
+    {
+        return firstNeighbour != null && firstNeighbour.type != Gem.GemType.stone
+            && secondNeighbour != null && secondNeighbour.type != Gem.GemType.stone;
+    }
 
+    private void WorkWithLine(Gem previousGem, Gem currentGem, Gem nextGem, List<Gem>farGems, SuperGem.BoostType boostType)
+    {
+        if(IsAvailableForChecking(previousGem, nextGem)) 
+        {
+            if( previousGem.type == currentGem.type && currentGem.type == nextGem.type)
+            {
+                MarkGemsinLine(new Gem[3] {previousGem, currentGem, nextGem});
+                if((farGems.Count == 1 && farGems[0].type == currentGem.type) || 
+                   (farGems.Count == 2 && farGems[0].type == currentGem.type && farGems[1].type != currentGem.type))
+                {
+                    SuperGem superGem = new(currentGem, boostType);
+                    superGemOnBoard.Add(superGem);
+                }
+            }
+        }
+
+    }
     public void CheckForSuperGem()
     {
         List<Gem> gemsToMark = new List<Gem>();
@@ -191,6 +234,7 @@ public class MatchFinder : MonoBehaviour
         currentMatches = currentMatches.Distinct().ToList();
 
     }
+
     public void MarkBombArea(Vector2Int bombPosition, Gem theBomb)
     {
         for (int x = bombPosition.x - theBomb.blastSize; x <= bombPosition.x + theBomb.blastSize; x++)
