@@ -140,49 +140,21 @@ public class MatchFinder : MonoBehaviour
             if(gem.posIndex.x > 0)
             {
                 CheckForBombOnCoord(x - 1, y);
-                //if (board.allGems[x - 1, y] != null)
-                //{
-                //    if(board.allGems[x - 1, y].type == Gem.GemType.bomb)
-                //    {
-                //        MarkBombArea(new Vector2Int(x-1, y), board.allGems[x - 1, y]);
-                //    }
-                //}
             }
 
             if (gem.posIndex.x < board.width - 1)
             {
                 CheckForBombOnCoord(x + 1, y);
-                //if (board.allGems[x + 1, y] != null)
-                //{
-                //    if (board.allGems[x + 1, y].type == Gem.GemType.bomb)
-                //    {
-                //        MarkBombArea(new Vector2Int(x + 1, y), board.allGems[x + 1, y]);
-                //    }
-                //}
             }
 
             if (gem.posIndex.y > 0)
             {
                 CheckForBombOnCoord(x, y - 1);
-                //if (board.allGems[x, y - 1] != null)
-                //{
-                //    if (board.allGems[x, y - 1].type == Gem.GemType.bomb)
-                //    {
-                //        MarkBombArea(new Vector2Int(x, y - 1), board.allGems[x, y - 1]);
-                //    }
-                //}
             }
 
             if (gem.posIndex.y < board.height - 1)
             {
                 CheckForBombOnCoord(x, y + 1);
-                //if (board.allGems[x, y + 1] != null)
-                //{
-                //    if (board.allGems[x, y + 1].type == Gem.GemType.bomb)
-                //    {
-                //        MarkBombArea(new Vector2Int(x, y + 1), board.allGems[x, y + 1]);
-                //    }
-                //}
             }
         }
     }
