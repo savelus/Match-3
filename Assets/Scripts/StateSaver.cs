@@ -28,14 +28,6 @@ public class StateSaver : MonoBehaviour
         return board.allGems;
     }
 
-
-    //public StateSaver(Board board, RoundManager roundManager)
-    //{
-    //    this.board = board;
-    //    this.roundManager = roundManager;
-    //    var boardAndManager = new KeyValuePair<Board, RoundManager>(board, roundManager);
-    //}
-
     public void SaveState(Board board, RoundManager roundManager)
     {
         sceneName = SceneManager.GetActiveScene().name;

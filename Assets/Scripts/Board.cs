@@ -100,7 +100,6 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        //fallManager.MoveAllGems(allGems);
     }
 
     private void SpawnGem(Vector2Int pos, Gem gemToSpawn)
@@ -233,7 +232,6 @@ public class Board : MonoBehaviour
                     allGems[x, y] = null;
                 }
             }
-            //fallManager.MoveAllGems(allGems);
             nullCounter = 0;
         }
 
@@ -280,7 +278,6 @@ public class Board : MonoBehaviour
         }
 
         CheckMisplacedGems();
-        //fallManager.MoveAllGems(allGems);
     }
 
     private void CheckMisplacedGems()
@@ -343,7 +340,6 @@ public class Board : MonoBehaviour
                     gemsFromBoard.RemoveAt(gemToUse);
                 }
             }
-            //fallManager.MoveAllGems(allGems);
             StartCoroutine(FillBoardCo());
             
         }

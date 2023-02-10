@@ -14,7 +14,6 @@ public class SwapManager : MonoBehaviour
     private Vector2Int firstGemPosition;
     private Vector2Int finalGemPosition;
 
-    //private Vector2Int previousPosition;
     private bool isMousePressed;
     private float swipeAngel = 0;
 
@@ -25,25 +24,11 @@ public class SwapManager : MonoBehaviour
         this.board = board;
     }
 
-    private void Awake()
-    {
-       
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             fallManager.isCanFall= false;
-            //var position = Input.mousePosition;
-
-            //var worldPosition = _camera.ScreenToWorldPoint(position);
-            //var localPosition = board.transform.InverseTransformPoint(worldPosition);
-            //firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //Debug.Log(firstTouchPosition);
-            //var x = Mathf.CeilToInt(localPosition.x);
-            //var y = Mathf.CeilToInt(localPosition.y);
 
             if (board.currentState == Board.BoardState.move && board.roundManager.roundTime > 0)
             {
@@ -94,37 +79,28 @@ public class SwapManager : MonoBehaviour
 
     private void MovePieces()
     {
-        //previousPosition = firstGemPosition;
         if (swipeAngel < 45 && swipeAngel >= -45 && firstGemPosition.x < board.width - 1)
         {
             finalGem = board.allGems[firstGemPosition.x + 1, firstGemPosition.y];
             finalGemPosition = finalGem.posIndex;
-            //finalGem.posIndex.x--;
-            //posIndex.x++;
             finalGem.posIndex = firstGemPosition;
         }
         else if (swipeAngel >= 45 && swipeAngel <= 135 && firstGemPosition.y < board.height - 1)
         {
             finalGem = board.allGems[firstGemPosition.x, firstGemPosition.y + 1];
             finalGemPosition = finalGem.posIndex;
-            //otherGem.posIndex.y--;
-            //posIndex.y++;
             finalGem.posIndex = firstGemPosition;
         }
         else if (swipeAngel < -45 && swipeAngel >= -135 && firstGemPosition.y > 0)
         {
             finalGem = board.allGems[firstGemPosition.x, firstGemPosition.y - 1];
             finalGemPosition = finalGem.posIndex;
-            //otherGem.posIndex.y++;
-            //posIndex.y--;
             finalGem.posIndex = firstGemPosition;
         }
         else if (swipeAngel > 135 || swipeAngel < -135 && firstGemPosition.x > 0)
         {
             finalGem = board.allGems[firstGemPosition.x - 1, firstGemPosition.y];
             finalGemPosition = finalGem.posIndex;
-            //otherGem.posIndex.x++;
-            //posIndex.x--;
             finalGem.posIndex = firstGemPosition;
         }
         
@@ -132,9 +108,6 @@ public class SwapManager : MonoBehaviour
         board.allGems[finalGemPosition.x, finalGemPosition.y] = firstGem;
         board.allGems[firstGemPosition.x, firstGemPosition.y] = finalGem;
         
-        //fallManager.MoveGem(firstGem);
-        //fallManager.MoveGem(finalGem);
-
         StartCoroutine(CheckMoveCo());
     }
 
