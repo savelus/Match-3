@@ -53,9 +53,9 @@ public class SwapManager : MonoBehaviour
 
                 CalculateAngel();
             }
-            fallManager.isCanFall = true;
         }
         else return;
+        fallManager.isCanFall = true;
     }
 
 
