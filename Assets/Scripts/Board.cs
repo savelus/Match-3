@@ -22,6 +22,8 @@ public class Board : MonoBehaviour
     public MatchFinder matchFinder;
 
     public FallManager fallManager;
+
+    public SwapManager swapManager;
     public enum BoardState {  wait, move}
     public BoardState currentState = BoardState.move;
 
@@ -42,8 +44,6 @@ public class Board : MonoBehaviour
         roundManager = FindObjectOfType<RoundManager>();
         boardLayout = GetComponent<BoardLayout>();
         stateSaver = GetComponent<StateSaver>();
-
-        
     }
 
     void Start()
@@ -52,8 +52,11 @@ public class Board : MonoBehaviour
 
         layoutStore = new Gem[width, height];
 
-        Setup();
+        
+        
         fallManager.SetBoard(this);
+        swapManager.SetBoard(this);
+        Setup();
     }
 
     public void Update()
@@ -64,6 +67,7 @@ public class Board : MonoBehaviour
             ShuffleBoard();
         }
     }
+
     private void Setup()
     {
 
@@ -96,7 +100,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        
+        //fallManager.MoveAllGems(allGems);
     }
 
     private void SpawnGem(Vector2Int pos, Gem gemToSpawn)
@@ -229,7 +233,7 @@ public class Board : MonoBehaviour
                     allGems[x, y] = null;
                 }
             }
-
+            //fallManager.MoveAllGems(allGems);
             nullCounter = 0;
         }
 
@@ -276,6 +280,7 @@ public class Board : MonoBehaviour
         }
 
         CheckMisplacedGems();
+        //fallManager.MoveAllGems(allGems);
     }
 
     private void CheckMisplacedGems()
@@ -338,6 +343,7 @@ public class Board : MonoBehaviour
                     gemsFromBoard.RemoveAt(gemToUse);
                 }
             }
+            //fallManager.MoveAllGems(allGems);
             StartCoroutine(FillBoardCo());
             
         }

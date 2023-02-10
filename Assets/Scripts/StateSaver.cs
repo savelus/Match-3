@@ -33,7 +33,7 @@ public class StateSaver : MonoBehaviour
     //{
     //    this.board = board;
     //    this.roundManager = roundManager;
-    //    //var boardAndManager = new KeyValuePair<Board, RoundManager>(board, roundManager);
+    //    var boardAndManager = new KeyValuePair<Board, RoundManager>(board, roundManager);
     //}
 
     public void SaveState(Board board, RoundManager roundManager)
