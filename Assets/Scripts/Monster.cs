@@ -8,6 +8,7 @@ public class Monster : MonoBehaviour
 
     public int StartHealth;
 
+    public GameObject destroyEffect;
     void Awake()
     {
         health = StartHealth;
