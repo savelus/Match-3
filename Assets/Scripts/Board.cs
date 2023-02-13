@@ -1,8 +1,11 @@
+using DG.Tweening;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 public class Board : MonoBehaviour
@@ -22,7 +25,7 @@ public class Board : MonoBehaviour
     public MatchFinder matchFinder;
 
     public FallManager fallManager;
-
+    public MonsterManager monsterManager;
     public SwapManager swapManager;
     public enum BoardState {  wait, move}
     public BoardState currentState = BoardState.move;
@@ -188,14 +191,31 @@ public class Board : MonoBehaviour
                 {
                     SFXManager.instance.PlayGemBreak();
                 }
+
                 Instantiate(allGems[position.x, position.y].destroyEffect, 
                     new Vector2(position.x, position.y), Quaternion.identity);
 
-                Destroy(allGems[position.x, position.y].gameObject);
-                allGems[position.x, position.y] = null;
+                MoveAndDestroyGemOnMonster(position);
+
             }
         }
     }
+
+    private void MoveAndDestroyGemOnMonster(Vector2Int position)
+    {
+
+        var monsterPosition = monsterManager.Monster.transform.position;
+        var gem = allGems[position.x, position.y];
+        allGems[position.x, position.y] = null;
+        DOTween.Sequence().Append(gem.transform.DOMove(monsterPosition, 0.3f))
+            .Join(gem.transform.DOScale(0.5f, 0.3f))
+            .AppendInterval(0.1f)
+            .AppendCallback(() => {
+                Debug.Log("fffff");
+                Destroy(gem.gameObject);
+            });
+    }
+
 
     public void DestroyMatches()
     {
@@ -344,18 +364,18 @@ public class Board : MonoBehaviour
             
         }
 
-        
     }
 
     public void scoreCheck(Gem gemToCheck)
     {
-        roundManager.currentScore += gemToCheck.scoreValue;
-
-        if(bonusMulti > 0)
+        float score = gemToCheck.scoreValue;
+        if (bonusMulti > 0)
         {
-            float bonusToAdd = gemToCheck.scoreValue * bonusMulti * bonusAmount;
-            roundManager.currentScore += Mathf.RoundToInt(bonusToAdd);
+            score += gemToCheck.scoreValue * bonusMulti * bonusAmount;
         }
+
+        roundManager.currentScore += Mathf.RoundToInt(score);
+        monsterManager.DoDamage(Mathf.RoundToInt(score));
     }
 
     public void SaveBoard()
