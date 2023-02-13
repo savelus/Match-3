@@ -210,8 +210,9 @@ public class Board : MonoBehaviour
         DOTween.Sequence().Append(gem.transform.DOMove(monsterPosition, 0.3f))
             .Join(gem.transform.DOScale(0.5f, 0.3f))
             .AppendInterval(0.1f)
-            .AppendCallback(() => {
-                Debug.Log("fffff");
+            .AppendCallback(() =>
+            {
+                Instantiate(monsterManager.Monster.destroyEffect, monsterPosition, Quaternion.identity);
                 Destroy(gem.gameObject);
             });
     }
