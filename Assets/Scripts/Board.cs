@@ -111,7 +111,7 @@ public class Board : MonoBehaviour
         {
             gemToSpawn = bomb;
         }
-        Gem gem = Instantiate(gemToSpawn, new Vector3(pos.x, pos.y + height, 0f), Quaternion.identity);
+        Gem gem = Instantiate(gemToSpawn, new Vector3(pos.x, pos.y - height, 0f), Quaternion.identity);
         gem.transform.parent = transform;
         gem.name = $"Gem - {pos.x} , {pos.y}";
         allGems[pos.x, pos.y] = gem;
@@ -240,16 +240,16 @@ public class Board : MonoBehaviour
 
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = height - 1; y >= 0; y--)
             {
-                if (allGems[x,y ] == null)
+                if (allGems[x,y] == null)
                 {
                     nullCounter++;
                 }
                 else if(nullCounter > 0)
                 {
-                    allGems[x, y].posIndex.y -= nullCounter;
-                    allGems[x, y - nullCounter] = allGems[x, y];
+                    allGems[x, y].posIndex.y += nullCounter;
+                    allGems[x, y + nullCounter] = allGems[x, y];
                     allGems[x, y] = null;
                 }
             }
