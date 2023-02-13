@@ -9,20 +9,9 @@ public class Gem : MonoBehaviour
     //[HideInInspector]
     public Board board;
 
-    private Vector2 firstTouchPosition;
-    private Vector2 finalTouchPosition;
-
-    private bool isMousePressed;
-    private float swipeAngel = 0;
-
-    private Gem otherGem;
-
     public bool isMatched;
-
-    private Vector2Int previousPosition;
     public enum GemType { blue, green, red, yellow, purple, bomb, stone}
 
-    
     public GemType type;
 
     public GameObject destroyEffect;

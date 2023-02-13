@@ -22,7 +22,7 @@ public class Board : MonoBehaviour
     public MatchFinder matchFinder;
 
     public FallManager fallManager;
-
+    public MonsterManager monsterManager;
     public SwapManager swapManager;
     public enum BoardState {  wait, move}
     public BoardState currentState = BoardState.move;
@@ -349,13 +349,14 @@ public class Board : MonoBehaviour
 
     public void scoreCheck(Gem gemToCheck)
     {
-        roundManager.currentScore += gemToCheck.scoreValue;
-
-        if(bonusMulti > 0)
+        float score = gemToCheck.scoreValue;
+        if (bonusMulti > 0)
         {
-            float bonusToAdd = gemToCheck.scoreValue * bonusMulti * bonusAmount;
-            roundManager.currentScore += Mathf.RoundToInt(bonusToAdd);
+            score += gemToCheck.scoreValue * bonusMulti * bonusAmount;
         }
+
+        roundManager.currentScore += Mathf.RoundToInt(score);
+        monsterManager.DoDamage(Mathf.RoundToInt(score));
     }
 
     public void SaveBoard()
