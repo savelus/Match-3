@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c767efe0df146bd42a3ab6feca536cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 1000
+  StartHealth: 1500
 --- !u!1 &434185999
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiMonsterManager: {fileID: 1640404131}
-  monster: {fileID: 203588354}
+  Monster: {fileID: 203588354}
 --- !u!4 &434186001
 Transform:
   m_ObjectHideFlags: 0
@@ -1395,6 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: {fileID: 695206839}
+  Slider: {fileID: 1835183610}
 --- !u!1 &1835183608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,7 +1483,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
